@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-@WebServlet("/")
+@WebServlet("/main_page")
 public class ParseServlet extends HttpServlet {
     private static Logger logger = LogManager.getLogger();
 
@@ -26,8 +26,8 @@ public class ParseServlet extends HttpServlet {
         String language = locale.substring(0,2);
         String country = locale.substring(3, locale.length());
         Locale loc = new Locale(language, country);
+        request.getSession().setAttribute("locale", loc);
         ResourceBundle rb = ResourceBundle.getBundle("elements", loc);
-
         String pageTitle = rb.getString("pageTitle");
         String languageElement = rb.getString("language");
         String submitElement = rb.getString("submit");
