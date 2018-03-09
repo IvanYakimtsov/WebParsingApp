@@ -83,4 +83,10 @@ public abstract class Voucher {
         this.transport = value;
     }
 
+    @Override
+    public String toString(){
+        String value = id + " " + country + " " + transport + " " + daysNumber + " " + cost;
+        return value;
+    }
+
 }

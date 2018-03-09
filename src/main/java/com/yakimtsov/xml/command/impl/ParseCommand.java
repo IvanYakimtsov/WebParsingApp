@@ -81,6 +81,7 @@ public class ParseCommand implements Command {
                 vouchers = parser.parse(file);
             }
             String parseMessage = rb.getString("parseMessage");
+            request.setAttribute("list",vouchers);
             request.setAttribute("parseMessage", parseMessage + parserType);
         }
 

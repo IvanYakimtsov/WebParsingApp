@@ -5,10 +5,10 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Hotel", propOrder = {
-    "meal",
-    "apartmentType",
-    "apartmentSize",
-    "email"
+        "meal",
+        "apartmentType",
+        "apartmentSize",
+        "email"
 })
 public class Hotel {
 
@@ -80,4 +80,9 @@ public class Hotel {
         this.rate = value;
     }
 
+    @Override
+    public String toString() {
+        String value = name + " " + rate + " " + meal + " " + apartmentType + " " + apartmentSize + " " + email;
+        return value;
+    }
 }

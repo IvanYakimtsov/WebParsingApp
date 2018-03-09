@@ -12,6 +12,14 @@ ${errorMessage}
 <br/>
 ${parseMessage}
 <br/>
+<table>
+    <c:forEach items="${list}" var="item">
+        <tr>
+            <td><c:out value="${item}" /></td>
+        </tr>
+    </c:forEach>
+</table>
+<br/>
 <form action="${pageContext.request.contextPath}/index.jsp">
     <input type="submit" value="${back}"/>
 </form>

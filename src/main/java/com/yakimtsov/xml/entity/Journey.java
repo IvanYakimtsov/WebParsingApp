@@ -31,4 +31,8 @@ public class Journey extends Voucher {
         this.hotel = value;
     }
 
+    @Override
+    public String toString() {
+        return "Journey: " + super.toString() + " " + hotel.toString();
+    }
 }

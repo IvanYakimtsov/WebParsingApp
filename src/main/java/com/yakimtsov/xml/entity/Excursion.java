@@ -33,4 +33,8 @@ public class Excursion
         this.excursionLanguage = value;
     }
 
+    @Override
+    public String toString() {
+        return "Excursion: " + super.toString() + " " + excursionLanguage;
+    }
 }
