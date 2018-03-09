@@ -1,27 +1,25 @@
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+package com.yakimtsov.xml.command.impl;
+
+import com.yakimtsov.xml.command.Command;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-@WebServlet("/main_page")
-public class ParseServlet extends HttpServlet {
-    private static Logger logger = LogManager.getLogger();
+public class LocalisationCommand implements Command{
+    private HttpServletRequest request;
+    private HttpServletResponse response;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.setContentType("text/html");
-//        response.getWriter().print("This is " + this.getClass().getName()
-//                + ", using the POST method");
+    public LocalisationCommand(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    public void execute() throws IOException, ServletException {
         String locale = request.getParameter("localeName");
         String language = locale.substring(0,2);
         String country = locale.substring(3, locale.length());
@@ -31,12 +29,16 @@ public class ParseServlet extends HttpServlet {
         String pageTitle = rb.getString("pageTitle");
         String languageElement = rb.getString("language");
         String submitElement = rb.getString("submit");
+        String fileUpload = rb.getString("fileUpload");
+        String selectFile = rb.getString("selectFile");
+        String parseFile = rb.getString("parseFile");
         request.setAttribute("locale", loc);
         request.setAttribute("pageTitle", pageTitle);
         request.setAttribute("language", languageElement);
         request.setAttribute("submit", submitElement);
-        logger.log(Level.INFO, "hello from first servlet " + loc.getCountry());
-
+        request.setAttribute("fileUpload", fileUpload);
+        request.setAttribute("selectFile", selectFile);
+        request.setAttribute("parseFile", parseFile);
         request.setCharacterEncoding("UTF-8");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

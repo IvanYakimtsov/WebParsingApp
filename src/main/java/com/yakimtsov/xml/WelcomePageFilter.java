@@ -1,4 +1,5 @@
-import org.apache.logging.log4j.Level;
+package com.yakimtsov.xml;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,10 +35,16 @@ public class WelcomePageFilter implements Filter{
         String pageTitle = rb.getString("pageTitle");
         String languageElement = rb.getString("language");
         String submitElement = rb.getString("submit");
+        String fileUpload = rb.getString("fileUpload");
+        String selectFile = rb.getString("selectFile");
+        String parseFile = rb.getString("parseFile");
         servletRequest.setAttribute("locale", loc);
         servletRequest.setAttribute("pageTitle", pageTitle);
         servletRequest.setAttribute("language", languageElement);
         servletRequest.setAttribute("submit", submitElement);
+        servletRequest.setAttribute("fileUpload", fileUpload);
+        servletRequest.setAttribute("selectFile", selectFile);
+        servletRequest.setAttribute("parseFile", parseFile);
         servletRequest.setCharacterEncoding("UTF-8");
 
         filterChain.doFilter(servletRequest, servletResponse);

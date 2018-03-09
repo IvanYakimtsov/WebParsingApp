@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.com/vouchers"
+        xmlns:tns="http://www.example.com/vouchers"
+        elementFormDefault="qualified">
+
+    <element name="tourist-vouchers">
+        <complexType>
+            <sequence>
+
+                <element ref="tns:voucher"
+                         minOccurs="1"
+                         maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="voucher" type="tns:Voucher" abstract="true"/>
+    <element name="journey" type="tns:Journey" substitutionGroup="tns:voucher"/>
+    <element name="excursion" type="tns:Excursion" substitutionGroup="tns:voucher"/>
+
+    <complexType name="Journey">
+        <complexContent>
+            <extension base="tns:Voucher">
+                <sequence>
+                    <element name="hotel" type="tns:Hotel"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Excursion">
+        <complexContent>
+            <extension base="tns:Voucher">
+                <sequence>
+                    <element name="excursion-language" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Hotel">
+        <sequence>
+            <element name="meal" type="tns:Meal"/>
+            <element name="apartment-type" type="tns:Apartment-Type"/>
+            <element name="apartment-size" type="positiveInteger"/>
+            <element name="email" type="tns:Email"/>
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="rate" use="optional" default="1">
+            <simpleType>
+                <restriction base="positiveInteger">
+                    <enumeration value="1"></enumeration>
+                    <enumeration value="2"></enumeration>
+                    <enumeration value="3"></enumeration>
+                    <enumeration value="4"></enumeration>
+                    <enumeration value="5"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <simpleType name="Meal">
+        <restriction base="string">
+            <enumeration value="HB"></enumeration>
+            <enumeration value="BB"></enumeration>
+            <enumeration value="AL"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Email">
+        <restriction base="string">
+            <pattern value="[^@]+@[^\.]+\..+"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Apartment-Type">
+        <restriction base="string">
+            <enumeration value="SIMPLE"></enumeration>
+            <enumeration value="BUSINESS"></enumeration>
+            <enumeration value="LUXE"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Voucher">
+        <sequence>
+            <element name="id" type="ID"/>
+            <element name="country" type="string"/>
+            <element name="days-number" type="positiveInteger"/>
+            <element name="cost" type="positiveInteger"/>
+        </sequence>
+        <attribute name="transport" type="string" use="optional"/>
+    </complexType>
+
+
+</schema>
