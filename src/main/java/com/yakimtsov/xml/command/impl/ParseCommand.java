@@ -1,8 +1,6 @@
 package com.yakimtsov.xml.command.impl;
 
 import com.yakimtsov.xml.command.Command;
-import com.yakimtsov.xml.entity.Excursion;
-import com.yakimtsov.xml.entity.Journey;
 import com.yakimtsov.xml.entity.TouristVoucherList;
 import com.yakimtsov.xml.entity.Voucher;
 import com.yakimtsov.xml.exeption.ParseException;
@@ -83,6 +81,9 @@ public class ParseCommand implements Command {
             String parseMessage = rb.getString("parseMessage");
             request.setAttribute("list",vouchers);
             request.setAttribute("parseMessage", parseMessage + parserType);
+
+            request.setCharacterEncoding("UTF-8");
+            request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
         }
 
     }

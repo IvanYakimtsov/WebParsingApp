@@ -1,4 +1,4 @@
-package com.yakimtsov.xml;
+package com.yakimtsov.xml.servlet;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

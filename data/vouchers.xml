@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tourist-vouchers
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.example.com/vouchers"
+        xsi:noNamespaceSchemaLocation="vouchers.xsd">
+    <journey transport="air">
+        <id>x1</id>
+        <country>USA</country>
+        <days-number>10</days-number>
+        <cost>9000</cost>
+        <hotel name="Grand Hotel" rate="5">
+            <meal>AL</meal>
+            <apartment-type>LUXE</apartment-type>
+            <apartment-size>3</apartment-size>
+            <email>grand.hotel@hotel.com</email>
+        </hotel>
+    </journey>
+    <journey transport="air">
+        <id>x2</id>
+        <country>CANADA</country>
+        <days-number>7</days-number>
+        <cost>900</cost>
+        <hotel rate="2" name="Simple Hotel">
+            <meal>AL</meal>
+            <apartment-type>LUXE</apartment-type>
+            <apartment-size>3</apartment-size>
+            <email>simple.hotel@hotel.com</email>
+        </hotel>
+    </journey>
+    <excursion transport="bus">
+        <id>x3</id>
+        <country>Poland</country>
+        <days-number>5</days-number>
+        <cost>300</cost>
+        <excursion-language>rus</excursion-language>
+    </excursion>
+    <excursion transport="bus">
+        <id>x4</id>
+        <country>Germany</country>
+        <days-number>1</days-number>
+        <cost>400</cost>
+        <excursion-language>eng</excursion-language>
+    </excursion>
+    <excursion transport="bus">
+        <id>x5</id>
+        <country>Germany</country>
+        <days-number>2</days-number>
+        <cost>800</cost>
+        <excursion-language>eng</excursion-language>
+    </excursion>
+    <journey transport="air">
+        <id>x6</id>
+        <country>UK</country>
+        <days-number>7</days-number>
+        <cost>9000</cost>
+        <hotel rate="3" name="Some Hotel">
+            <meal>AL</meal>
+            <apartment-type>BUSINESS</apartment-type>
+            <apartment-size>1</apartment-size>
+            <email>some.hotel@hotel.com</email>
+        </hotel>
+    </journey>
+    <journey transport="air">
+        <id>x7</id>
+        <country>France</country>
+        <days-number>7</days-number>
+        <cost>6000</cost>
+        <hotel rate="5" name="Royal Hotel">
+            <meal>AL</meal>
+            <apartment-type>BUSINESS</apartment-type>
+            <apartment-size>2</apartment-size>
+            <email>royal.hotel@hotel.com</email>
+        </hotel>
+    </journey>
+</tourist-vouchers>

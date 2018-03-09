@@ -1,4 +1,4 @@
-package com.yakimtsov.xml;
+package com.yakimtsov.xml.servlet;
 
 import com.yakimtsov.xml.command.impl.LocalisationCommand;
 import org.apache.logging.log4j.LogManager;

@@ -1,4 +1,4 @@
-package com.yakimtsov.xml;
+package com.yakimtsov.xml.servlet;
 
 
 import com.yakimtsov.xml.command.impl.ParseCommand;
@@ -63,8 +63,6 @@ public class UploadServlet extends HttpServlet {
 
         parseFile(filename, request, response, rb);
 
-        request.setCharacterEncoding("UTF-8");
-        request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
     }
 
     private void parseFile(String filename,
