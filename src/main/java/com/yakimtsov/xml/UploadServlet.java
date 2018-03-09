@@ -34,21 +34,15 @@ public class UploadServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        LOGGER.info("called doPost() from UploadServlet");
-
-
         String applicationPath = request.getServletContext().getRealPath("");
         String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
         File fileSaveDir = new File(uploadFilePath);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdirs();
         }
-
-        LOGGER.info("Upload File Directory = " + fileSaveDir.getAbsolutePath());
         HttpSession session = request.getSession();
         Locale locale = (Locale) session.getAttribute("locale");
-        ResourceBundle rb = ResourceBundle.getBundle("elements", locale);
+        ResourceBundle rb = ResourceBundle.getBundle("resultPageElements", locale);
         String filename = null;
         for (Part part : request.getParts()) {
             if (part.getSubmittedFileName() != null) {
@@ -61,17 +55,25 @@ public class UploadServlet extends HttpServlet {
                 request.setAttribute("uploadFileName", part.getSubmittedFileName());
                 if (!part.getSubmittedFileName().equals("")) {
                     part.write(uploadFilePath + File.separator + part.getSubmittedFileName());
-                    filename = part.getSubmittedFileName();
+                    filename = uploadFilePath + File.separator + part.getSubmittedFileName();
                 }
 
             }
         }
 
+        parseFile(filename, request, response, rb);
+
+        request.setCharacterEncoding("UTF-8");
+        request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+    }
+
+    private void parseFile(String filename,
+                           HttpServletRequest request, HttpServletResponse response,
+                           ResourceBundle rb) throws ServletException {
         if (filename != null) {
             ClassLoader classLoader = getClass().getClassLoader();
-            //TODO: fix it
             File schemaFile = new File(classLoader.getResource("vouchers.xsd").getFile());
-            File uploadFile = new File(fileSaveDir.getAbsolutePath() + File.separator + filename);
+            File uploadFile = new File(filename);
             Source xmlFile = new StreamSource(uploadFile);
             SchemaFactory schemaFactory = SchemaFactory
                     .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -79,7 +81,6 @@ public class UploadServlet extends HttpServlet {
                 Schema schema = schemaFactory.newSchema(schemaFile);
                 Validator validator = schema.newValidator();
                 validator.validate(xmlFile);
-                System.out.println(xmlFile.getSystemId() + " is valid");
                 new ParseCommand(request, response, uploadFile).execute();
             } catch (SAXException e) {
                 LOGGER.log(Level.ERROR, xmlFile.getSystemId() + " is NOT valid reason:" + e);
@@ -91,11 +92,6 @@ public class UploadServlet extends HttpServlet {
                 request.setAttribute("errorMessage", errorMessage + e.getMessage());
             }
         }
-
-        request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //   LOGGER.info("called doGet() from UploadServlet");
-    }
 }

@@ -15,11 +15,6 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
     private static Logger logger = LogManager.getLogger();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.setContentType("text/html");
-//        response.getWriter().print("This is " + this.getClass().getName()
-//                + ", using the POST method");
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        String command = request.getParameter("command");

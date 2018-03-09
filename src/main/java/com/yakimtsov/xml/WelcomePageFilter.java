@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 @WebFilter("/index.jsp")
 public class WelcomePageFilter implements Filter{
@@ -32,21 +33,13 @@ public class WelcomePageFilter implements Filter{
         }
 
         ResourceBundle rb = ResourceBundle.getBundle("elements", loc);
-        String pageTitle = rb.getString("pageTitle");
-        String languageElement = rb.getString("language");
-        String submitElement = rb.getString("submit");
-        String fileUpload = rb.getString("fileUpload");
-        String selectFile = rb.getString("selectFile");
-        String parseFile = rb.getString("parseFile");
-        servletRequest.setAttribute("locale", loc);
-        servletRequest.setAttribute("pageTitle", pageTitle);
-        servletRequest.setAttribute("language", languageElement);
-        servletRequest.setAttribute("submit", submitElement);
-        servletRequest.setAttribute("fileUpload", fileUpload);
-        servletRequest.setAttribute("selectFile", selectFile);
-        servletRequest.setAttribute("parseFile", parseFile);
-        servletRequest.setCharacterEncoding("UTF-8");
+        Set<String> keySet = rb.keySet();
+        keySet.forEach(key -> {
+            String value = rb.getString(key);
+            servletRequest.setAttribute(key,value);
+        });
 
+        servletRequest.setCharacterEncoding("UTF-8");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

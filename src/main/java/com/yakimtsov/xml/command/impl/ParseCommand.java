@@ -47,7 +47,7 @@ public class ParseCommand implements Command {
         String parserType = request.getParameter("parserType");
         HttpSession session = request.getSession();
         Locale locale = (Locale) session.getAttribute("locale");
-        ResourceBundle rb = ResourceBundle.getBundle("elements", locale);
+        ResourceBundle rb = ResourceBundle.getBundle("resultPageElements", locale);
         if (parserType != null) {
             ArrayList<Voucher> vouchers;
 
