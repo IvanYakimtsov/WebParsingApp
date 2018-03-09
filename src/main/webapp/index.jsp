@@ -24,6 +24,12 @@ ${selectFile} <br/>
     <input type="file" name="file" size="50"/>
     <br/>
     <input type="hidden" name="command" value="upload">
+    <table>
+        <tr>
+            <td>Send result to:</td>
+            <td><input type="text" name="to"/></td>
+        </tr>
+    </table>
     <select name="parserType">
         <option value="DOM">DOM</option>
         <option value="SAX">SAX</option>

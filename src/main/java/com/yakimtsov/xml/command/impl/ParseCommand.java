@@ -79,11 +79,9 @@ public class ParseCommand implements Command {
                 vouchers = parser.parse(file);
             }
             String parseMessage = rb.getString("parseMessage");
-            request.setAttribute("list",vouchers);
+            request.setAttribute("list", vouchers);
             request.setAttribute("parseMessage", parseMessage + parserType);
-
-            request.setCharacterEncoding("UTF-8");
-            request.getRequestDispatcher("/pages/result.jsp").forward(request, response);
+            new SendEmailCommand(request, response, vouchers).execute();
         }
 
     }

@@ -17,14 +17,6 @@ public class Controller extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String command = request.getParameter("command");
-//        switch (command){
-//            case "localisation": new LocalisationCommand(request,response).execute();
-//                                 break;
-//            case "upload": new UploadCommand()
-//        }
         new LocalisationCommand(request,response).execute();
-
-
     }
 }
